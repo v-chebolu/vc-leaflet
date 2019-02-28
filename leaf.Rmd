@@ -1,0 +1,20 @@
+---
+title: "US Cities with R User Groups"
+author: "Venkata B Chebolu"
+date: "February 28, 2019"
+output: html_document
+---
+
+```{r, echo=FALSE}
+suppressWarnings(suppressMessages(library(leaflet, quietly=T)))
+suppressWarnings(suppressMessages(library(htmlwidgets, quietly=T)))
+suppressWarnings(suppressMessages(library(htmltools, quietly=T)))
+df <- read.csv("city.csv", sep='#')
+
+mymap <- leaflet() %>%
+  addTiles() %>%
+  addMarkers(lat=df$lat, lng=df$lng, popup = df$popup,
+             clusterOptions=markerClusterOptions())
+mymap
+```
+
